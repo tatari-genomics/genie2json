@@ -70,7 +70,7 @@ polyphenPrediction - line element 55
 siftPrediction - line element 57
 
 Line element refers to the order within data_mutations_extended.txt where line element 0 is the first column. This order was used in both v17 and v18 of GENIE. 
-If later versions of GENIE have a different order then the file will have to be rebuilt to align to this order.
+If later versions of GENIE have a different order then either the file will have to be rebuilt to align to this order, or the code will need to be modified to either read the header info.
 
 The system must also create the following fields with values for fields below taken by querying the clinical database derived in step 1.
 
