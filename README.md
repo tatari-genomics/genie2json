@@ -103,6 +103,11 @@ Use MongoDB Compass or command line execution:
 mongoimport mongodb://127.0.0.1/genie --collection mutation [path]/genie_v[version_number].json
 
 
+To validate the process it is recommeded to check that the number of entries in the clinical collection matches the number of data rows (i.e not counting header and comment rows) 
+and the number of entries in the mutation collection matches the number of data rows (typical the total line count minus one header row) and that for a number of random mutations
+that the documents match the orgiginal GENIE data.
+
+
 
 
 
