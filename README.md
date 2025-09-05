@@ -1,4 +1,4 @@
-This code is designed to convert GENIE data into JSON format to be uploaded into MongoDB, and requires MongoDB to build the mutation file.
+This code is designed to convert GENIE data into JSON format to be uploaded into MongoDB, and requires MongoDB to build the mutation file. 
 There are two main steps to the process.
 
 1. Creation and upload of clinical data from data_clinical_sample.txt and optionally from a self-built two column csv file of sample id and cancer super type (with values 'Haematological' or 'Solid Tumour').
@@ -27,8 +27,74 @@ If a second file is not provided, for each row it will add 'NA' for the high-lev
 Running step 1:
 
 java -jar [path]/genie2json.jar clinical_sample [path to output]/clinical_v[version_number].json [path to input]/data_clinical_sample.txt [path to optional supertype file]/GENIE_v18_Cancer_Types.csv
+
 java -jar [path]/genie2json.jar clinical_sample [path to output]/clinical_v[version_number].json [path to input]/data_clinical_sample.txt
 
 
-**** Upoad these clinical data into MongoDB. They are utilised to supplement the mutation information generated in the second step. ****
+**** Upoad these clinical data into a clinical collection in a genie database in MongoDB. They are utilised to supplement the mutation information generated in the second step. ****
+
+Use MongoDB Compass or command line execution:
+
+mongoimport mongodb://127.0.0.1/genie --collection clinical [path]/clinical_v[version_number].json
+
+
+2. Creation and upload of mutation data
+
+The information within data_mutations_extended.txt is converted to JSON format preserving for each row that does NOT start with ‘Hugo_Symbol’ (i.e.., all but the first row) the following fields, rendering the values exactly as in the original file in all cases apart from where specified:
+
+gene - line element 0
+center - line element 2
+build - line element 3
+chromosome - line element 4
+start - line element 5
+end - line element 6
+strand - line element 7
+consequence - line element 8
+variantClassification - line element 9
+variantType - line element 10
+ref - line element 11
+alt1 - line element 12
+alt2 - line element 13
+rsid - line element 14
+tumourRefCount - line element 33
+tumourAltCount - line element 34
+tumourTotalCount - line element 61
+exon - line element 44. Trim off the total number of by splitting on / and taking the first element.
+Sample line element 16
+hgvsc - line element 37. Trim off transcript by splitting on colon and taking the second element.
+hgvsp - line element 39
+ensemblTranscriptId - line element 40
+refseq - line element 41
+protpos - line element 42. Convert to Integer data type.
+polyphenPrediction - line element 55
+siftPrediction - line element 57
+
+Line element refers to the order within data_mutations_extended.txt where line element 0 is the first column. This order was used in both v17 and v18 of GENIE. 
+If later versions of GENIE have a different order then the file will have to be rebuilt to align to this order.
+
+The system must also create the following fields with values for fields below taken by querying the clinical database derived in step 1.
+
+patient
+age
+assayId
+oncotreeCode
+cancerType
+cancerTypeDetailed
+cancerTypeHighLevel
+sampleType
+
+Two derived field must be added:
+
+•	hgvspCodon – for nonsense and frameshift mutations extract the protpos from the hgvsp string, and for all others just populate with an empty string.
+•	genieVersion – the mutation data json filename e.g. genie_v18-0
+
+**** Upoad these mutation data into a mutation collection in a genie database in MongoDB. ****
+
+Use MongoDB Compass or command line execution:
+
+mongoimport mongodb://127.0.0.1/genie --collection mutation [path]/genie_v[version_number].json
+
+
+
+
 
