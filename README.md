@@ -1,3 +1,9 @@
+Release v1.0
+
+As below but with required rather than optional supertype file and hard-coded mutation columns (so no need for 4th argument of mutation_mapping).
+
+Release v1.1
+
 This code is designed to convert GENIE data into JSON format to be uploaded into MongoDB, and requires MongoDB to build the mutation file. 
 There are two main steps to the process.
 
