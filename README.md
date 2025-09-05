@@ -86,7 +86,15 @@ sampleType
 Two derived field must be added:
 
 •	hgvspCodon – for nonsense and frameshift mutations extract the protpos from the hgvsp string, and for all others just populate with an empty string.
+
 •	genieVersion – the mutation data json filename e.g. genie_v18-0
+
+Running step 2:
+
+java -jar [path]/genie2json.jar mutations_extended genie_v[version_number].json [path to input]/data_mutations_extended.txt
+
+N.B. It is recommended to run the code from the directory that you want the output JSON file (second command line argument) to be located AND to call the file genie_v[version_number].json. 
+This will ensure a meaningful genie version without a path is added to the genieVersion field.
 
 **** Upoad these mutation data into a mutation collection in a genie database in MongoDB. ****
 
