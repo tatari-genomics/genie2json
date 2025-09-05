@@ -1,7 +1,5 @@
 package com.tatari.magiclamp.domain;
 
-import java.util.Collection;
-
 import org.springframework.data.annotation.Id;
 
 /**
