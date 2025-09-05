@@ -1,0 +1,65 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container-sm">
+	<div class="jumbotron">
+    	<h1>Magiclamp v0.0.5</h1>
+    	<p>Search the GENIE v17.0 database</p>
+  	</div>
+
+<form action="#" th:action="@{/query}" th:object="${querySpecification}" method="post">
+	<div class="row mb-3">
+		<label class="col-form-label col-sm-2" for="type">Variant Classification *</label>
+		<div class="col-sm-10">
+			<select class="form-control" th:field="*{consequenceCategory}">
+				<option th:value="'Not_Specified'" th:text="Not_Specified"></option>
+				<option th:value="'Frame_Shift_Del,Frame_Shift_Ins,Nonsense_Mutation'" th:text="Frame_Shift_Indel_Nonsense_Mutation"></option>
+   				<option th:value="'In_Frame_Del'" th:text="In_Frame_Del"></option>  
+   				<option th:value="'In_Frame_Ins'" th:text="In_Frame_Ins"></option>  
+    			<option th:value="'Missense_Mutation'" th:text="Missense_Mutation"></option>    			
+    			<option th:value="'Splice_Region,Splice_Site'" th:text="Splice_Region_Splice_Site"></option> 			
+			</select>
+			<small id="incidenceHelp" class="form-text text-muted">REQUIRED</small>
+		</div>   
+	</div>
+	<div class="row mb-3">
+    	<label class="col-form-label col-sm-2"for="gene">Gene *</label>
+    	<div class="col-sm-10">
+    		<input class="form-control" type="text" th:field="*{gene}" id="gene" placeholder="Gene name e.g. KRAS" />  
+    		<small id="geneHelp" class="form-text text-muted">REQUIRED</small>    		
+    		<span class="text-danger" th:if="${#fields.hasErrors('gene')}" th:errors="*{gene}"></span>	
+    	</div>
+    </div>
+    <div class="row mb-3">
+    	<label class="col-form-label col-sm-2" for="protposStart">Protein position start</label>
+    	<div class="col-sm-10">
+    		<input class="form-control" type="text" th:field="*{protposStart}" id="protposStart" placeholder="Protein position e.g. 12" />
+    		<small id="ppStartHelp" class="form-text text-muted">REQUIRED for frameshift and nonsense queries ONLY. Optional for missense queries to limit search space but required if end is specified.</small> 
+    		<span class="text-danger" th:if="${#fields.hasErrors('protposStart')}" th:errors="*{protposStart}"></span>
+    	</div>
+   	</div>
+   	<div class="row mb-3">
+    	<label class="col-form-label col-sm-2" for="protposEnd">Protein position end</label>
+    	<div class="col-sm-10">
+    		<input class="form-control" type="text" th:field="*{protposEnd}" id="protposEnd" placeholder="Protein position e.g. 14" />
+    		<small id="ppEndHelp" class="form-text text-muted">OPTIONAL for missense queries to limit search space but required if start is specified.</small> 
+    		<span class="text-danger" th:if="${#fields.hasErrors('protposEnd')}" th:errors="*{protposEnd}"></span>
+    	</div>
+   	</div>
+   	<div class="row mb-3">
+    	<label class="col-form-label col-sm-2" for="hgvs">HGVS</label>
+    	<div class="col-sm-10">
+    		<input class="form-control" type="text" th:field="*{hgvs}" id="hgvsp" placeholder="HGVSp e.g. p.(Gly469Ser) or HGVSc e.g. c.1405_1407delinsAGC" />
+    		<span class="text-danger" th:if="${#fields.hasErrors('hgvs')}" th:errors="*{hgvs}"></span>
+    	</div>
+   	</div>
+	<button class="btn btn-primary" type="submit">Search GENIE database</button> 
+</form>
+</div>
+</body>
+</html>

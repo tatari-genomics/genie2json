@@ -1,0 +1,119 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+
+<div class="container-fluid">
+
+    <h1>Magiclamp v0.0.5</h1>
+
+    <p><a th:href="@{/query}">New Search</a></p>
+    
+    <!--  
+  </div>
+		<table class="table table-striped">
+     		<tr th:each="element : ${results}">
+        		<td style="width: 10%" th:text="${element.key}"></td>
+        		<td>
+        		<table>
+        		<thead>
+          		<tr>
+            		<td>Sample</td>
+            		<td>Consequence</td>
+            		<td>Location</td>
+            		<td>HGVSc</td>
+            		<td>HGVSp</td>
+            		<td>CancerType</td>
+          		</tr>
+        		</thead>
+        		<tbody>
+    				<tr th:each="mutation : ${element.value}">
+    					<td style="width: 10%" th:text="${mutation.sampleOnlyString}"></td>
+    					<td style="width: 10%" th:text="${mutation.consequence}"></td>
+    					<td style="width: 20%" th:text="${mutation.chromString}"></td>
+    					<td style="width: 15%" th:text="${mutation.hgvsc}"></td>
+    					<td style="width: 10%" th:text="${mutation.hgvsp}"></td>
+     					<td style="width: 25%" th:text="${mutation.cancerTypeSummary}"></td>
+    				</tr>
+    			</tbody>
+				</table>
+				</td>
+     		</tr>
+		</table>
+  <div>
+
+   <h2>Raw</h2><label th:text="${'GENIE v17.0 Search results: ' + rawCount}"></label>
+   <h2>Filtered</h2><label th:text="${'GENIE v17.0 Search results: ' + filteredCount}"></label>
+     -->
+   
+   <h2>Matched</h2><label th:text="${'GENIE v17.0 Search results: ' + matches}"></label>
+   <a th:href="@{'/query/download'}">Download Excel File</a>
+   
+   <!--  
+      </div>
+		<table class="table table-striped">
+			<thead>
+          		<tr>
+            		<td>Patient</td>
+            		<td>Sample</td>
+            		<td>Consequence</td>
+            		<td>Location</td>
+            		<td>HGVSc</td>
+            		<td>HGVSp</td>
+            		<td>CancerType</td>
+          		</tr>
+        	</thead>
+			<tbody>
+     			<tr th:each="mutation : ${mutations}">
+     					<td style="width: 10%" th:text="${mutation.patient}"></td>
+    					<td style="width: 10%" th:text="${mutation.sampleOnlyString}"></td>
+    					<td style="width: 10%" th:text="${mutation.consequence}"></td>
+    					<td style="width: 20%" th:text="${mutation.chromString}"></td>
+    					<td style="width: 15%" th:text="${mutation.hgvscLimitedLength}"></td>
+    					<td style="width: 5%" th:text="${mutation.hgvsp}"></td>
+     					<td style="width: 30%" th:text="${mutation.cancerTypeSummary}"></td>
+    			</tr>
+    		</tbody>
+		</table>
+  	<div>  
+      <h2>Filtered</h2><label th:text="${'GENIE v17.0 Search results: ' + filteredCount}"></label>
+       <a th:href="@{'/query/download'}">Download Excel File</a>
+
+     </div>
+		<table class="table table-striped">
+			<thead>
+          		<tr>
+            		<td>Patient</td>
+            		<td>Sample</td>
+            		<td>Consequence</td>
+            		<td>Location</td>
+            		<td>HGVSc</td>
+            		<td>HGVSp</td>
+            		<td>CancerType</td>
+          		</tr>
+        	</thead>
+			<tbody>
+     			<tr th:each="mutation : ${mutationsWithoutDuplications}">
+     					<td style="width: 10%" th:text="${mutation.patient}"></td>
+    					<td style="width: 10%" th:text="${mutation.sampleOnlyString}"></td>
+    					<td style="width: 10%" th:text="${mutation.consequence}"></td>
+    					<td style="width: 20%" th:text="${mutation.chromString}"></td>
+    					<td style="width: 15%" th:text="${mutation.hgvscLimitedLength}"></td>
+    					<td style="width: 5%" th:text="${mutation.hgvsp}"></td>
+     					<td style="width: 30%" th:text="${mutation.cancerTypeSummary}"></td>
+    			</tr>
+    		</tbody>
+		</table>
+  	<div>
+   
+        <a th:href="@{/query}">New Search</a>
+        
+        -->
+ </div>  
+
+</body>
+</html>
