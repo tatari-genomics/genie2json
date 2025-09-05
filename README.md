@@ -2,6 +2,7 @@ This code is designed to convert GENIE data into JSON format to be uploaded into
 There are two main steps to the process.
 
 1. Creation of clinical data from data_clinical_sample.txt and optionally from a self-built two column csv file of sample id and cancer super type (with values 'Haematological' or 'Solid Tumour').
+   
 The first step is to convert the information within data_clinical_sample.txt to JSON format preserving for each row that starts with ‘GENIE’ the following fields, rendering the values exactly as in the original file:
 
 •	patient - line element 0
@@ -21,7 +22,7 @@ If a second file (4th command line argument) is provided, for each row it  will 
 •	sample - line element 0
 •	cancerTypeHighLevel – line element 1
 
-If a second file is not provided, for each row it may will add 'NA' for the high-level cancer type.
+If a second file is not provided, for each row it will add 'NA' for the high-level cancer type.
 
 N.B. These clinical data are loaded into MongoDB and utilised to supplement the mutation information generated in the second step.
 
