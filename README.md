@@ -1,7 +1,7 @@
 This code is designed to convert GENIE data into JSON format to be uploaded into MongoDB, and requires MongoDB to build the mutation file.
 There are two main steps to the process.
 
-1. Creation of clinical data from data_clinical_sample.txt and optionally from a self-built two column csv file of sample id and cancer super type (with values 'Haematological' or 'Solid Tumour').
+1. Creation and upload of clinical data from data_clinical_sample.txt and optionally from a self-built two column csv file of sample id and cancer super type (with values 'Haematological' or 'Solid Tumour').
    
 The first step is to convert the information within data_clinical_sample.txt to JSON format preserving for each row that starts with ‘GENIE’ the following fields, rendering the values exactly as in the original file:
 
@@ -24,5 +24,11 @@ If a second file (4th command line argument) is provided, for each row it  will 
 
 If a second file is not provided, for each row it will add 'NA' for the high-level cancer type.
 
-N.B. These clinical data are loaded into MongoDB and utilised to supplement the mutation information generated in the second step.
+Running step 1:
+
+java -jar [path]/genie2json.jar clinical_sample [path to output]/clinical_v[version_number].json [path to input]/data_clinical_sample.txt [path to optional supertype file]/GENIE_v18_Cancer_Types.csv
+java -jar [path]/genie2json.jar clinical_sample [path to output]/clinical_v[version_number].json [path to input]/data_clinical_sample.txt
+
+
+**** Upoad these clinical data into MongoDB. They are utilised to supplement the mutation information generated in the second step. ****
 
